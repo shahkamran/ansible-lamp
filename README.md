@@ -60,8 +60,10 @@ The test script included has couple of commands including ```echo "hello world"`
 ## Deploy LAMP installation
 You can run below command to execute playbook which will go and install LAMP stack on all servers within the inventory defined.
 ```ansible-playbook -i inventory.ini lamp.yml```
+
 If your destination hosts are not set up for passwordless sudo you can use following to be able t enter password.
 ```ansible-playbook -i inventory.ini --ask-become-pass lamp.yml```
+
 Running this playbook will install following packages on destination hosts.
 - [x] apache2
 - [x] mysql-server
