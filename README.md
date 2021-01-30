@@ -22,13 +22,13 @@ All of the hosts will also require connection configuration defined in config fi
 
 ```
 # hosts-ssh-config - move to ~/.ssh/config
-Host host01
+Host host-01
   Hostname 192.168.0.5
   User root
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
-Host host02
+Host host-02
   Hostname 10.0.0.5
   User root
   IdentityFile ~/.ssh/id_rsa
@@ -36,9 +36,25 @@ Host host02
   UserKnownHostsFile /dev/null
 ```
 
-* Install Python
-* Set up passwordless ssh key access
-* Set up passwordless sudo
+### Set up passwordless ssh key access
+If you do not have an id_rsa key already set up or do not want to use it, create a new key using command below.
+```ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N ""```
+
+Now copy the contents of ~/.ssh/id_rsa.pub into our destination hosts ~/.ssh/authorized_keys.
+Or alternatively, if you have password authentication enabled, you can use ```ssh-copy-id root@10.0.0.x``` etc.
+Now we should be able to ssh to our nodes to host-01, host-02 etc.
+
+### Install Python on servers
+Now we need to install Python on destination hosts which can be achieved using below command.
+```ansible -m raw -s -a "apt update && apt install python -y" -i inventory.ini hosts```
+
+### Set up passwordless sudo
+The account set up in config file and used for connectivity to hosts should have sudo access and should be set up with passwordless sudo. If the sudo commands ask for password for the user you can amend sudo configuration by running ```sudo visudo``` and modifying ```#%sudo	ALL=(ALL:ALL) ALL``` to ```%sudo  ALL=(ALL:ALL) NOPASSWD: ALL``` on all destination hosts.
+
+
+
+If you have not set up ssh key for root account, you will have to modify sudo access to allow 
+
 
 ## Test
 * Run test shell script
