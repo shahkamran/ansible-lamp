@@ -1,6 +1,8 @@
 # Install LAMP stack on servers using Ansible
 Provision LAMP stack on multiple servers using Ansible Playbook
 
+This Ansible playbook has been tested on destination hosts running Ubuntu 20.04.1 LTS but could be easily adopted for other Linux distributions.
+
 ## Pre-requisites
 ### Install Ansible
 Ansible heavily depends on Python and will require Python and associated dependencies. On your client you can run following commands to install dependencies.
