@@ -59,7 +59,7 @@ The account set up in config file and used for connectivity to hosts should have
 ## Test
 The test script included has couple of commands including ```echo "hello world"``` and ```hostname``` defined. Run this to confirm your inventory and connectivity and investigate any errors.
 
-```ansible-playbook -i inventory.ini test-shell-playbook.hml ```
+```ansible-playbook -i inventory.ini test-shell-playbook.yml```
 
 ## Deploy LAMP installation
 You can run below command to execute playbook which will go and install LAMP stack on all servers within the inventory defined.

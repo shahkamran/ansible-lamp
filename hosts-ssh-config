@@ -6,13 +6,13 @@
 #  You must have passwordless ssh keys configured to connect to the hosts
 #
 #
-Host host01
+Host host-01
   Hostname 192.168.0.5
   User username
   IdentityFile ~/.ssh/id_rsa
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
-Host host02
+Host host-02
   Hostname 10.0.0.5
   User username
   IdentityFile ~/.ssh/id_rsa
