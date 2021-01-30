@@ -49,7 +49,7 @@ Now we should be able to ssh to our nodes to host-01, host-02 etc.
 ### Install Python on servers
 Now we need to install Python on destination hosts which can be achieved using below command.
 
-```ansible -m raw -s -a "apt update && apt install python -y" -i inventory.ini hosts```
+```ansible hosts -b -m raw  -a "apt update && apt install python3 -y" -i inventory.ini```
 
 ### Set up passwordless sudo
 The account set up in config file and used for connectivity to hosts should have sudo access and should be set up with passwordless sudo. If the sudo commands ask for password for the user you can amend sudo configuration by running ```sudo visudo``` and modifying ```#%sudo	ALL=(ALL:ALL) ALL``` to ```%sudo  ALL=(ALL:ALL) NOPASSWD: ALL``` on all destination hosts.
@@ -57,7 +57,7 @@ The account set up in config file and used for connectivity to hosts should have
 ## Test
 The test script included has couple of commands including ```echo "hello world"``` and ```hostname``` defined. Run this to confirm your inventory and connectivity and investigate any errors.
 
-```ansible-playbook -i inventory.ini shell-script-playbook.yml ```
+```ansible-playbook -i inventory.ini test-shell-playbook.hml ```
 
 ## Deploy LAMP installation
 You can run below command to execute playbook which will go and install LAMP stack on all servers within the inventory defined.
@@ -66,7 +66,7 @@ You can run below command to execute playbook which will go and install LAMP sta
 
 If your destination hosts are not set up for passwordless sudo you can use following to be able t enter password.
 
-```ansible-playbook -i inventory.ini --ask-become-pass lamp.yml```
+```ansible-playbook -b -i inventory.ini lamp.yml```
 
 Running this playbook will install following packages on destination hosts.
 - [x] apache2
