@@ -1,7 +1,20 @@
 # Install LAMP stack on servers using Ansible
 Provision LAMP stack on multiple servers using Ansible Playbook
 
-This Ansible playbook has been tested on destination hosts running Ubuntu 20.04.1 LTS but could be easily adopted for other Linux distributions.
+This Ansible playbook has been tested on destination hosts running following Linux distributions but can be easily adopted for other Linux distributions.
+
+* Ubuntu 20.04.1 LTS
+* CentOS Linux release 8.3.2011
+
+Here is list of other package versions used in this repository/ playbook.
+
+* ansible 2.10.5 (MacOS)
+* PHP 7.4.3 (Ubuntu)
+* PHP 7.2.24 (CentOS)
+* Apache/2.4.41 (Ubuntu)
+* Apache/2.4.37 (centos)
+* MySQL 8.0.22-0ubuntu0.20.04.3 (Ubuntu)
+* MySQL 8.0.21 (CentOS)
 
 ## Pre-requisites
 ### Install Ansible
