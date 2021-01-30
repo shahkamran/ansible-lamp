@@ -2,7 +2,7 @@
 # Setup LAMP Stack
 - hosts: hosts
   tasks:
-    - name: install lamp stack
+    - name: install lamp stack on Debian/Ubuntu hosts
       become: yes
       become_user: root
       apt:
@@ -11,16 +11,40 @@
           - mysql-server
           - php7.4
           - php7.4-mysql
-        state: present
+        state: latest
         update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-    - name: start apache service
+    - name: install lamp stack on RHEL/CentOS hosts
+      become: yes
+      become_user: root
+      apt:
+        pkg:
+          - httpd
+          - mysql-server
+          - php7.4
+          - php7.4-mysql
+        state: latest
+        update_cache: yes
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+    - name: start apache service on Debian/Ubuntu hosts
       become: yes
       become_user: root
       service:
         name: apache2
         state: started
         enabled: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: start apache service on RHEL/CentOS hosts
+      become: yes
+      become_user: root
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
     - name: start mysql service
       become: yes
