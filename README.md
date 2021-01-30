@@ -16,7 +16,6 @@ Inventory initialisation file contains list of hosts and will require adding the
 [hosts]
 host-01
 host-02
-host-03
 ```
 All of the hosts will also require connection configuration defined in config file. The file example provided (hosts-ssh-config) will have to be moved to ~/.ssh/config with appropriate amendments.
 
