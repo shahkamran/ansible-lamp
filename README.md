@@ -41,7 +41,9 @@ If you do not have an id_rsa key already set up or do not want to use it, create
 * ```ssh-keygen -b 2048 -f ~/.ssh/id_rsa -t rsa -q -N ""```
 
 Now copy the contents of ~/.ssh/id_rsa.pub into our destination hosts ~/.ssh/authorized_keys.
+
 Or alternatively, if you have password authentication enabled, you can use ```ssh-copy-id root@10.0.0.x``` etc.
+
 Now we should be able to ssh to our nodes to host-01, host-02 etc.
 
 ### Install Python on servers
@@ -50,7 +52,6 @@ Now we need to install Python on destination hosts which can be achieved using b
 
 ### Set up passwordless sudo
 The account set up in config file and used for connectivity to hosts should have sudo access and should be set up with passwordless sudo. If the sudo commands ask for password for the user you can amend sudo configuration by running ```sudo visudo``` and modifying ```#%sudo	ALL=(ALL:ALL) ALL``` to ```%sudo  ALL=(ALL:ALL) NOPASSWD: ALL``` on all destination hosts.
-
 
 ## Test
 The test script included has couple of commands including ```echo "hello world"``` and ```hostname``` defined. Run this to confirm your inventory and connectivity and investigate any errors.
@@ -68,4 +69,5 @@ Running this playbook will install following packages on destination hosts.
           - php7.4-mysql
 
 It will also start apache2 and mysql and will also set them up to start on boot.
+
 Finally, it will copy index.html to each destination host /var/www/html directory.
