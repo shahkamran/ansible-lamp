@@ -63,10 +63,10 @@ You can run below command to execute playbook which will go and install LAMP sta
 If your destination hosts are not set up for passwordless sudo you can use following to be able t enter password.
 ```ansible-playbook -i inventory.ini --ask-become-pass lamp.yml```
 Running this playbook will install following packages on destination hosts.
-          - apache2
-          - mysql-server
-          - php7.4
-          - php7.4-mysql
+- [x] apache2
+- [x] mysql-server
+- [x] php7.4
+- [x] php7.4-mysql
 
 It will also start apache2 and mysql and will also set them up to start on boot.
 
