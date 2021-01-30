@@ -49,9 +49,15 @@ Or alternatively, if you have password authentication enabled, you can use ```ss
 Now we should be able to ssh to our nodes to host-01, host-02 etc.
 
 ### Install Python on servers
-Now we need to install Python on destination hosts which can be achieved using below command.
+Now we need to install Python on destination hosts which can be achieved using below command. If you run yum on Ubuntu or apt on CentOS it will end in error and will not harm anything in my view but please run at your own risk. 
+
+For Debian/Ubuntu hosts run following.
 
 ```ansible hosts -b -m raw  -a "apt update && apt install python3 -y" -i inventory.ini```
+
+For RedHat/CentOS hosts run below command.
+
+```ansible hosts -b -m raw -a "yum update -y&& yum install python3 -y" -i inventory.ini```
 
 ### Set up passwordless sudo
 The account set up in config file and used for connectivity to hosts should have sudo access and should be set up with passwordless sudo. If the sudo commands ask for password for the user you can amend sudo configuration by running ```sudo visudo``` and modifying ```#%sudo	ALL=(ALL:ALL) ALL``` to ```%sudo  ALL=(ALL:ALL) NOPASSWD: ALL``` on all destination hosts.

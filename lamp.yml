@@ -18,12 +18,12 @@
     - name: install lamp stack on RHEL/CentOS hosts
       become: yes
       become_user: root
-      apt:
+      yum:
         pkg:
           - httpd
           - mysql-server
-          - php7.4
-          - php7.4-mysql
+          - php
+          - php-mysqlnd
         state: latest
         update_cache: yes
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
@@ -46,13 +46,23 @@
         enabled: yes
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-    - name: start mysql service
+    - name: start mysql service on Debian/Ubuntu hosts
       become: yes
       become_user: root
       service:
         name: mysql
         state: started
         enabled: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: start mysql service on RHEL/CentOS hosts
+      become: yes
+      become_user: root
+      service:
+        name: mysqld
+        state: started
+        enabled: yes
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
     - name: create target directory
       file: path=/var/www/html state=directory mode=0755
