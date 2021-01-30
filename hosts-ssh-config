@@ -1,7 +1,7 @@
 #
 #  Move this file to ~/.ssh/config 
 #  You can run following command to move this file
-#  mv hosts-config ~/.ssh/config
+#  mv hosts-ssh-config ~/.ssh/config
 #
 #  You must have passwordless ssh keys configured to connect to the hosts
 #
