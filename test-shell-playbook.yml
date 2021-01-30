@@ -1,0 +1,15 @@
+---
+# Echo Static String
+- hosts: hosts
+  tasks:
+  - name: echo hello world
+    shell: /bin/echo "hello world"
+    register: echo_output
+
+  - name: list hostname
+    shell: /bin/hostname
+    register: hostname_output
+
+  - debug: var=echo_output.stdout_lines
+  - debug: var=hostname_output.stdout_lines
+  - debug: var=location_city
